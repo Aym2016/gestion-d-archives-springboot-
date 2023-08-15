@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Registration Form</title>
+	 <link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>-->
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
+    <link rel="stylesheet"  href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"/>
+ <!--  <style>
+*{
+  padding: 0;
+  margin: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
+}
+body{
+  font-family: montserrat;
+}
+nav{
+  background: #0082e6;
+  height: 80px;
+  width: 100%;
+}
+label.logo{
+  color: white;
+  font-size: 35px;
+  line-height: 80px;
+  padding: 0 100px;
+  font-weight: bold;
+}
+nav ul{
+  float: right;
+  margin-right: 20px;
+}
+nav ul li{
+  display: inline-block;
+  line-height: 80px;
+  margin: 0 5px;
+}
+nav ul li a{
+  color: white;
+  font-size: 17px;
+  padding: 7px 13px;
+  border-radius: 3px;
+  text-transform: uppercase;
+}
+a.active,a:hover{
+  background: #1b9bff;
+  transition: .5s;
+}
+.checkbtn{
+  font-size: 30px;
+  color: white;
+  float: right;
+  line-height: 80px;
+  margin-right: 40px;
+  cursor: pointer;
+  display: none;
+}
+#check{
+  display: none;
+}
+@media (max-width: 952px){
+  label.logo{
+    font-size: 30px;
+    padding-left: 50px;
+  }
+  nav ul li a{
+    font-size: 16px;
+  }
+}
+@media (max-width: 858px){
+  .checkbtn{
+    display: block;
+  }
+  ul{
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: #2c3e50;
+    top: 80px;
+    left: -100%;
+    text-align: center;
+    transition: all .5s;
+  }
+  nav ul li{
+    display: block;
+    margin: 50px 0;
+    line-height: 30px;
+  }
+  nav ul li a{
+    font-size: 20px;
+  }
+  a:hover,a.active{
+    background: none;
+    color: #0082e6;
+  }
+  #check:checked ~ ul{
+    left: 0;
+  }
+}
+
+
+section{
+  background: url(bg1.jpg) no-repeat;
+  background-size: cover;
+  height: calc(100vh - 80px);
+}
+
+
+</style>-->
+<style>
+body{
+  font-family: "Open Sans", arial;
+  color:#fff;
+  font-weight:300;
+  background: #ee9ca7;  
+background: -webkit-linear-gradient(to right, #ffdde1, #ee9ca7);  
+background: linear-gradient(to right, #ffdde1, #ee9ca7); 
+
+}
+
+nav{
+  background:#00bbbb;
+  position:absolute;
+  top:0;
+  bottom:0;
+  height:100%;
+  left:0;
+  width:70px;
+  overflow:hidden;
+  -webkit-transition:width .2s linear;
+  transition:width .2s linear;
+}
+a {
+  position:relative;
+  text-decoration:none;
+  color:white;
+  font-size: 13px;
+  display:table;
+  width:250px;
+  border-top:1px solid #03A2A2;  
+}
+.fa {
+  position: relative;
+  width: 70px;
+  height: 36px;
+  text-align: center;
+  top:12px; 
+  font-size:20px;
+}
+nav .nav-text  {
+  position:relative;
+  top:12px;
+}
+
+a:hover{
+color:#fff;
+background-color:#3863F4; 
+}
+nav:hover{
+  width:250px;
+}
+.logo{
+  width:70px;
+  font-family: 'Tangerine', serif;
+  text-align:center;
+  transition:all 0.5s ease;
+}
+.label{
+  height:0px; 
+  float:left;
+  width:70px;
+  transition:all 0.5s ease;
+  font-family: 'Tangerine', serif;
+  opacity:0;
+}
+nav:hover> .logo{
+  width:250px;
+}
+nav:hover> .logo > h2{
+  text-indent: -999px
+}
+nav:hover> .logo > h2:before{
+  text-indent: 0px;
+  content:'OnAirCode';
+  float:left;
+  position:relative;
+  left:60px;
+}
+nav:hover> .label{
+  height:50px;
+  width:250px;
+  opacity:1;
+  color:black;
+  text-align:center;
+}
+.mid-block
+{
+background-color:#076868;
+text-transform:capitalize;
+box-shadow:inset 0px 5px 5px -4px rgba(50, 50, 50, 0.55), inset 0px -4px 5px -4px rgba(50, 50, 50, 0.55);;
+}
+.scrollbar
+{
+height: 90%;
+width: 100%;
+overflow-y: hidden;
+overflow-x: hidden;
+}
+
+#style-1::-webkit-scrollbar-track
+{
+border-radius: 2px;
+}
+
+#style-1::-webkit-scrollbar
+{
+width: 5px;
+background-color: #F7F7F7;
+}
+
+#style-1::-webkit-scrollbar-thumb
+{
+border-radius: 10px;
+-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+background-color: #BFBFBF;
+}
+.scrollbar:hover{
+  height: 90%;
+  width: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+</style>
+
+  </head>
+  <!-- <body>
+    <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">DesignX</label>
+      <ul>
+        <li><a class="active" href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Feedback</a></li>
+      </ul>
+    </nav>
+    <section></section>
+  </body>
+</html>-->
+  	<!-- google font -->
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700&amp;subset=all" rel="stylesheet" type="text/css" />
+    <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js" type="text/javascript"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- icons -->
+    <!--<link href="{{ asset('assets/js/simple-line-icons/simple-line-icons.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/font-awesome.min.css')}}" rel="stylesheet" type="text/css"/>-->
+
+    <!--bootstrap -->
+    <!-- <link href="{{ asset('assets/assets/js/bootstrap/css/bootstrap.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/js/bootstrap-switch/css/bootstrap-switch.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/js/bootstrap-datepicker/css/bootstrap-datepicker3.min.css')}}" rel="stylesheet" type="text/css" />
+
+    <!-- theme style -->
+   <!--  <link href="{{ asset('assets/css/theme_style.css')}}" rel="stylesheet" id="rt_style_components" type="text/css" />
+    <link href="{{ asset('assets/css/style.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/plugins.min.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/formlayout.css')}}" rel="stylesheet" type="text/css" />
+    <link href="{{ asset('assets/css/responsive.css')}}" rel="stylesheet" type="text/css" />
+-->
+    <!-- favicon -->
+    <!--  <link rel="shortcut icon" href="{{ asset('img/favicon.ico')}}" />-->
+  	
+</head>
+
+
+<!-- end header -->
+<!-- <body>-->
+<!-- class="page-header-fixed sidemenu-closed-hidelogo page-content-white page-md">-->
+  <!--   <div class="clearfix"> </div>-->
+<!-- start page container -->
+
+<!-- <div class="page-container">
+
+    <!-- start sidebar menu -->
+   <!--  <div class="sidebar-container">
+        <div class="sidemenu-container navbar-collapse collapse fixed-menu">
+            <div id="remove-scroll">
+                <ul class="sidemenu  page-header-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                    <li class="sidebar-toggler-wrapper hide">
+                        <div class="sidebar-toggler">
+                            <span></span>
+                        </div>
+                    </li>
+                   <!--  <li class="sidebar-user-panel">
+                        <div class="user-panel">
+                            <div class="pull-left image">
+                                <img src="{{ asset('img/dp.svg')}}" class="img-circle user-img-circle" alt="User Image" />
+                            </div>
+                            <div class="pull-left info">
+                                <p>Aymen</p>
+                                <a href="#"><i class="fa fa-circle user-online"></i><span class="txtOnline"> Online</span></a>
+                            </div>
+                        </div>
+                    </li>-->
+                   <!--  <li class="nav-item">
+                        <a href="index.xhtml" class="nav-link "> <i class="fa fa-tachometer"></i> <span class="title">Menu</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="email_inbox.html" class="nav-link ">
+                                    <span class="title">Inbox</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item  ">
+                                <a href="email_compose.html" class="nav-link ">
+                                    <span class="title">Compose Mail</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                            <span class="title">Article</span><span class="arrow"></span></a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{ path('article_new') }}" class="nav-link"> <span class="title">Ajouter un Article</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="contact.html.twig" class="nav-link "> <span class="title">Suppression et Modification d'un Dossier d'Accident</span>
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item  ">
+                                <a href="contact.html.twig" class="nav-link "> <span class="title">Chercher et Consulter Un Accident</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="statistique.xhtml" class="nav-link "> <span class="title">Statistiques des Accidents par Mois</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="ParametrerSysteme1.xhtml" class="nav-link "> <span class="title">Parametrage Systeme</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user-md"></i>
+                            <span class="title">Bordereau</span> <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="ajoutBordereauEnvoi.xhtml" class="nav-link "> <span class="title">Ajouter un Bordereau</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="supprimerBordereauEnvoi.xhtml" class="nav-link "> <span class="title">Suppression et Modification d'un Bordereau</span>
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item  ">
+                                <a href="chercherBordereau.xhtml" class="nav-link "> <span class="title">Chercher et Consulter Un Bordereau</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link nav-toggle"> <i class="fa fa-users"></i>
+                            <span class="title">Mandat</span> <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="ajoutMandat.xhtml" class="nav-link "> <span class="title">Ajouter Un Mandat</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="supprimerMandat.xhtml" class="nav-link "> <span class="title">Suppression et Modification d'un Mandat </span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="chercherMandat.xhtml" class="nav-link "> <span class="title">Chercher et Consulter Un Mandat</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link nav-toggle"> <i class="fa fa-users"></i>
+                            <span class="title">Remboursement</span> <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="ajoutRemboursement.xhtml" class="nav-link "> <span class="title">Ajouter Un Remboursement</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="supprimerRemboursement.xhtml" class="nav-link "> <span class="title">Suppression et Modification d'une Remboursement </span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item  ">
+                                <a href="chercherRemboursement.xhtml" class="nav-link "> <span class="title">Consulter et chercher Un Remboursement</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user"></i>
+                            <span class="title">Utilisateur</span> <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="ajoutUtilisateur.xhtml" class="nav-link "> <span class="title">Ajouter Un Utilisateur</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="supprimerCompteUtilisateur.xhtml" class="nav-link "> <span class="title">Suppression et Modification d'un Utilisateur</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item  ">
+                                <a href="chercherUtilisateur.xhtml" class="nav-link "> <span class="title">Chercher et Consulter Un Utilisateur</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user"></i>
+                            <span class="title">Employe</span> <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="ajoutEmploye.xhtml" class="nav-link "> <span class="title">Ajouter Un Employe</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="supprimerEmploye1.xhtml" class="nav-link "> <span class="title">Suppression et Modification d'un Employe</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item  ">
+                                <a href="chercherEmploye.xhtml" class="nav-link "> <span class="title">Chercher et Consulter Un Employe</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user"></i>
+                            <span class="title">Historique</span> <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="ajoutHistorique.xhtml" class="nav-link "> <span class="title">Ajouter Un Historique</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="supprimerHist.xhtml" class="nav-link "> <span class="title">Suppression et Modification d'un Historique</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item  ">
+                                <a href="chercherHis.xhtml" class="nav-link "> <span class="title">Chercher et Consulter Un Historique</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="ParametrerSysteme1.xhtml" class="nav-link "> <span class="title">Parametrage Systeme</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+       </div>
+       </div>-->
+    
+
+	<!-- <form th:action="@{/}" method="get">
+		<button class="btn btn-md btn-warning btn-block" type="Submit">Go To Login Page</button>
+	
+	</form>-->
+	 <!-- <div class="card-body">
+   <nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar-nav">
+    <li class="nav-item active">
+      <a class="nav-link btn " th:href="@{/produits}">Accueil</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link btn " th:href="@{/formUser}">Profil</a>
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-success" href="#" id="navbardrop" data-toggle="dropdown">Agence</a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/agence/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/agence/list}">liste des agences</a>
+     
+      
+      </div><li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbardrop" data-toggle="dropdown">Direction Regionales</a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/directionRegionale/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/directionRegionale/list}">liste des directions regionales</a>
+      
+      </div>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-success" href="#" id="navbardrop" data-toggle="dropdown">structure Centrales</a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/structureCentrale/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/structureCentrale/list}">liste des structures centrales</a>
+      
+      </div>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbardrop" data-toggle="dropdown">Nomenclatures</a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/nomenclature/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/nomenclature/list}"> liste des nomenclatures</a>
+      
+      </div>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-danger" href="#" id="navbardrop" data-toggle="dropdown"> suivi Document 1ere age </a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/suiviDoc1ereAge/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/suiviDoc1ereAge/list}">list des documents</a>
+      
+      </div>
+      
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-success" href="#" id="navbardrop" data-toggle="dropdown"> suivi Document 2eme age </a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/suiviDoc2emeAge/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/suiviDoc2emeAge/list}">list des documents</a>
+      
+      </div>
+      
+    </li> 
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-danger" href="#" id="navbardrop" data-toggle="dropdown"> demande Versement </a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/demandeVersement/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/demandeVersement/list}">list des demandes versements</a>
+      
+      </div>
+      
+    </li>
+    
+    
+  </ul>
+  <div class="page-container">
+
+    <!-- start sidebar menu -->
+    <!--<div class="sidebar-container">
+        <div class="sidemenu-container navbar-collapse collapse fixed-menu">
+            <div id="remove-scroll">
+                <ul class="sidemenu  page-header-fixed" data-keep-expanded="false" data-auto-scroll="true" data-slide-speed="200" style="padding-top: 20px">
+                    <li class="sidebar-toggler-wrapper hide">
+                        <div class="sidebar-toggler">
+                            <span></span>
+                        </div>
+                    </li>
+                    <li class="sidebar-user-panel">
+                        <div class="user-panel">
+                            <div class="pull-left image">
+                                <img src="{{ asset('img/dp.svg')}}" class="img-circle user-img-circle" alt="User Image" />
+                            </div>
+                            <div class="pull-left info">
+                                <p>Aymen</p>
+                                <a href="#"><i class="fa fa-circle user-online"></i><span class="txtOnline"> Online</span></a>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="index.xhtml" class="nav-link "> <i class="fa fa-tachometer"></i> <span class="title">Menu</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="email_inbox.html" class="nav-link ">
+                                    <span class="title">Inbox</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item  ">
+                                <a href="email_compose.html" class="nav-link ">
+                                    <span class="title">Compose Mail</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link nav-toggle"><i class="fa fa-book"></i>
+                            <span class="title">Article</span><span class="arrow"></span></a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="{{ path('article_new') }}" class="nav-link"> <span class="title">Ajouter un Article</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="contact.html.twig" class="nav-link "> <span class="title">Suppression et Modification d'un Dossier d'Accident</span>
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item  ">
+                                <a href="contact.html.twig" class="nav-link "> <span class="title">Chercher et Consulter Un Accident</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="statistique.xhtml" class="nav-link "> <span class="title">Statistiques des Accidents par Mois</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="ParametrerSysteme1.xhtml" class="nav-link "> <span class="title">Parametrage Systeme</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user-md"></i>
+                            <span class="title">Bordereau</span> <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="ajoutBordereauEnvoi.xhtml" class="nav-link "> <span class="title">Ajouter un Bordereau</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="supprimerBordereauEnvoi.xhtml" class="nav-link "> <span class="title">Suppression et Modification d'un Bordereau</span>
+                                </a>
+                            </li>
+
+
+                            <li class="nav-item  ">
+                                <a href="chercherBordereau.xhtml" class="nav-link "> <span class="title">Chercher et Consulter Un Bordereau</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link nav-toggle"> <i class="fa fa-users"></i>
+                            <span class="title">Mandat</span> <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="ajoutMandat.xhtml" class="nav-link "> <span class="title">Ajouter Un Mandat</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="supprimerMandat.xhtml" class="nav-link "> <span class="title">Suppression et Modification d'un Mandat </span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="chercherMandat.xhtml" class="nav-link "> <span class="title">Chercher et Consulter Un Mandat</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link nav-toggle"> <i class="fa fa-users"></i>
+                            <span class="title">Remboursement</span> <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="ajoutRemboursement.xhtml" class="nav-link "> <span class="title">Ajouter Un Remboursement</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="supprimerRemboursement.xhtml" class="nav-link "> <span class="title">Suppression et Modification d'une Remboursement </span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item  ">
+                                <a href="chercherRemboursement.xhtml" class="nav-link "> <span class="title">Consulter et chercher Un Remboursement</span>
+                                </a>
+                            </li>
+
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user"></i>
+                            <span class="title">Utilisateur</span> <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="ajoutUtilisateur.xhtml" class="nav-link "> <span class="title">Ajouter Un Utilisateur</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="supprimerCompteUtilisateur.xhtml" class="nav-link "> <span class="title">Suppression et Modification d'un Utilisateur</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item  ">
+                                <a href="chercherUtilisateur.xhtml" class="nav-link "> <span class="title">Chercher et Consulter Un Utilisateur</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user"></i>
+                            <span class="title">Employe</span> <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="ajoutEmploye.xhtml" class="nav-link "> <span class="title">Ajouter Un Employe</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="supprimerEmploye1.xhtml" class="nav-link "> <span class="title">Suppression et Modification d'un Employe</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item  ">
+                                <a href="chercherEmploye.xhtml" class="nav-link "> <span class="title">Chercher et Consulter Un Employe</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item  ">
+                        <a href="#" class="nav-link nav-toggle"> <i class="fa fa-user"></i>
+                            <span class="title">Historique</span> <span class="arrow"></span>
+                        </a>
+                        <ul class="sub-menu">
+                            <li class="nav-item  ">
+                                <a href="ajoutHistorique.xhtml" class="nav-link "> <span class="title">Ajouter Un Historique</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="supprimerHist.xhtml" class="nav-link "> <span class="title">Suppression et Modification d'un Historique</span>
+                                </a>
+                            </li>
+
+                            <li class="nav-item  ">
+                                <a href="chercherHis.xhtml" class="nav-link "> <span class="title">Chercher et Consulter Un Historique</span>
+                                </a>
+                            </li>
+                            <li class="nav-item  ">
+                                <a href="ParametrerSysteme1.xhtml" class="nav-link "> <span class="title">Parametrage Systeme</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+  
+  <div class="ml-auto">
+      <div class="btn-group text-right">
+        
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span  sec:authorize="isAuthenticated()"  sec:authentication="name" ></span>
+          <span  sec:authorize="!isAuthenticated()"  th:text="Action" ></span>          
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
+    <a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>  
+  </div>
+</div>
+   </nav>
+   </div>-->
+   <!--  <div id="mySidenav" class="sidenav">-->
+    <!-- <nav>
+      <input type="checkbox" id="check">
+      <label for="check" class="checkbtn">
+        <i class="fas fa-bars"></i>
+      </label>
+      <label class="logo">DesignX</label>
+      <ul>
+        <li><a class="active" href="#">Home</a></li>
+        <li><a href="#">About</a></li>
+        <li><a href="#">Services</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">Feedback</a></li>
+      </ul>
+    </nav>
+    </div>-->
+    <nav>
+    
+    <a class="logo" href="">
+    <h2 style="color:red">O<span style="color:blue">C<span></h2>
+  </a> 
+
+  <div class="label">Sidebar Navigation Menu Tutorial</div>
+<div class="scrollbar" id="style-1">
+  <a href=" ">
+    <i class="fa fa-home fa-lg"></i>
+    <span class="nav-text">Home</span>
+  </a>
+
+  <a href=" ">
+    <i class="fa fa-user fa-lg"></i>
+    <span class="nav-text">Profile</span>
+  </a>
+  
+  <a href=" ">
+      <i class="fa fa-envelope-o fa-lg"></i>
+      <span class="nav-text">E-mail</span>
+  </a>
+  
+  <div class="mid-block">
+
+    <a href=" ">
+     <i class="fa fa-html5 fa-lg"></i>
+      <span class="nav-text">HTML5</span>
+  </a>
+  
+  <a  href=" ">
+  <i class="fa fa-css3 fa-lg"></i>
+  <span class="nav-text">CSS3</span>
+  </a>
+
+  <a  href=" ">
+    <i class="fa fa-flask fa-lg"></i>
+    <span class="nav-text">Web Tools</span>
+  </a>
+
+  <a  href=" ">
+    <i class="fa fa-picture-o fa-lg"></i>
+    <span class="nav-text">Art & Design</span>
+  </a>
+  <a  href=" ">
+    <i class="fa fa-gamepad fa-lg"></i>
+    <span class="nav-text">Games</span>
+  </a>
+   
+  </div>
+   <a href=" ">
+    <i class="fa fa-book fa-lg"></i>
+    <span class="nav-text">Documentation</span>
+  </a>
+  <a href=" ">
+   <i class="fa fa-cog fa-lg"></i>
+    <span class="nav-text">Setting</span>
+  </a>
+  
+                        
+  <a href=" ">
+    <i class="fa fa-question-circle fa-lg"></i>
+    <span class="nav-text">Help</span>
+  </a>
+</div> 
+</nav>
+		<div class="container">
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<form autocomplete="off" action="#" th:action="@{/registration}"
+					th:object="${user}" method="post" class="form-horizontal"
+					role="form">
+					<h2>Registration Form</h2>
+					<div class="form-group">
+						<div class="col-sm-9">
+						<label th:if="${#fields.hasErrors('name')}" th:errors="*{name}"
+								class="validation-message"></label>
+						<input type="text" th:field="*{name}" placeholder="Name"
+								class="form-control" /> 
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+						<label	th:if="${#fields.hasErrors('lastName')}" th:errors="*{lastName}"
+								class="validation-message"></label>
+							<input type="text" th:field="*{lastName}"
+								placeholder="Last Name" class="form-control" /> 
+						</div>
+					</div>
+					<div class="form-group">
+						<div class="col-sm-9">
+							<input type="text" th:field="*{email}" placeholder="Email"
+								class="form-control" /> <label
+								th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
+								class="validation-message"></label>
+						</div>
+					</div>
+<div class="form-group">
+						<div class="col-sm-9">
+							<input type="password" th:field="*{password}"
+								placeholder="Password" class="form-control" /> <label
+								th:if="${#fields.hasErrors('password')}" th:errors="*{password}"
+								class="validation-message"></label>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<div class="col-sm-9">
+							<button type="submit" class="btn btn-primary btn-block">Register User</button>
+						</div>
+					</div>
+					
+					<span th:utext="${successMessage}"></span>
+					
+					
+				</form>
+			</div>
+		</div>
+	</div>
+
+</body>
+</html>
+				
+	

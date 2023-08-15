@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add Article</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+
+<body>
+    <div class="container my-5">
+   <nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar-nav">
+   <!--  <li class="nav-item active">
+      <a class="nav-link btn " th:href="@{/produits}">Accueil</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link btn " th:href="@{/formUser}">Profil</a>
+    </li>-->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-success" href="#" id="navbardrop" data-toggle="dropdown">Agence</a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/agence/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/agence/list}">liste des agences</a>
+     
+      
+      </div><li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbardrop" data-toggle="dropdown">Direction Regionales</a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/directionRegionale/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/directionRegionale/list}">liste des directions regionales</a>
+      
+      </div>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-success" href="#" id="navbardrop" data-toggle="dropdown">structure Centrales</a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/structureCentrale/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/structureCentrale/list}">liste des structures centrales</a>
+      
+      </div>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbardrop" data-toggle="dropdown">Nomenclatures</a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/nomenclature/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/nomenclature/list}"> liste des nomenclatures</a>
+      
+      </div>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-danger" href="#" id="navbardrop" data-toggle="dropdown"> suivi Document 1ere age </a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/suiviDoc1ereAge/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/suiviDoc1ereAge/list}">list des documents</a>
+      
+      </div>
+      
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-success" href="#" id="navbardrop" data-toggle="dropdown"> suivi Document 2eme age </a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/suiviDoc2emeAge/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/suiviDoc2emeAge/list}">list des documents</a>
+      
+      </div>
+      
+    </li> 
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-danger" href="#" id="navbardrop" data-toggle="dropdown"> demande Versement </a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/demandeVersement/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/demandeVersement/list}">list des demandes versements</a>
+      
+      </div>
+      
+    </li>
+    
+    
+  </ul>
+  <div class="ml-auto">
+      <div class="btn-group text-right">
+        
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span  sec:authorize="isAuthenticated()"  sec:authentication="name" ></span>
+          <span  sec:authorize="!isAuthenticated()"  th:text="Action" ></span>          
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
+    <a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>  
+  </div>
+</div>
+   </nav>
+   </div>
+    <div class="container my-5">
+        <h3> Add Structure Centrale</h3>
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-10">
+                    <form action="#" th:action="@{/structureCentrale/add}" th:object="${structureCentrale}" method="post" enctype="multipart/form-data">
+                        <div class="row">
+                            
+                            
+                            
+							<div class="form-group col-md-8">
+                                <label for="libelle structure centrale" class="col-form-label">libelle Structure Centrale</label> <input type="text" th:field="*{libelleStructure}" class="form-control" id="libelleStructure" placeholder=""/> <span th:if="${#fields.hasErrors('libelleStructure')}" th:errors="*{libelleStructure}" class="text-danger"></span>
+                            </div>
+                            <!-- <div class="form-group col-md-8">
+                                <label for="price" class="col-form-label">Price</label> <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="Price"/> <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></span>
+                            </div>
+                            
+                             <div class="form-group col-md-8">
+                            <label for="price" class="col-form-label">Picture</label>
+                            <input class="form-control" type="file" name="files" multiple>
+      					 	</div>-->
+                            
+                            
+                             <div class="form-group col-md-8">
+                             <label for="directionRegionale" class="col-form-label">Direction Regionales</label>
+                            <select name="directionRegionaleId" class="form-control">
+							    <option  th:each="di: ${directionRegionales}" th:value="${di.codeDirection}" th:text="${di.libelleDirection}" />
+							</select>
+							</div>
+							<!-- <div class="form-group col-md-8">
+                             <label for="LieuArchive" class="col-form-label">lieu Archive </label>
+                            <select name="lieu Archive Id" class="form-control">
+							    <option  th:each="li: ${lieuArchives}" th:value="${li.codeLieu}" th:text="${li.libelleLieu}" />
+							</select>
+							</div>-->
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-primary" value="Add Structure Centrale"/>
+                            </div>
+
+                            <div class="form-group col-md-8"></div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+
+
+
+
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add Article</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+<!-- </head>
+
+<body>
+    <div class="container my-5">
+        <h3> Add Article</h3>
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-10">
+                    <form action="#" th:action="@{/article/add}" th:object="${article}" method="post">
+                        <div class="row">
+                            
+                            
+                            
+							<div class="form-group col-md-8">
+                                <label for="label" class="col-form-label">Label</label> <input type="text" th:field="*{label}" class="form-control" id="label" placeholder="label"/> <span th:if="${#fields.hasErrors('label')}" th:errors="*{label}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="price" class="col-form-label">Price</label> <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="Price"/> <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-8">
+                            <label for="price" class="col-form-label">Picture</label>
+                            <input class="form-control" type="file" name="files" multiple>
+      					 	</div>
+                            
+                            
+                            <div class="form-group col-md-8">
+                             <label for="provider" class="col-form-label">Providers</label>
+                            <select name="providerId" class="form-control">
+							    <option  th:each="pr: ${providers}" th:value="${pr.id}" th:text="${pr.name}" />
+							</select>
+							</div>
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-primary" value="Add Article"/>
+                            </div>
+
+                            <div class="form-group col-md-8"></div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>-->
+
