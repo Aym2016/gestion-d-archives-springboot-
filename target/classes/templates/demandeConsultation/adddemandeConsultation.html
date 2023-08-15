@@ -1,0 +1,124 @@
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add Article</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+<!-- </head>
+
+<body>
+    <div class="container my-5">
+        <h3> Add Article</h3>
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-10">
+                    <form action="#" th:action="@{/article/add}" th:object="${article}" method="post">
+                        <div class="row">
+                            
+                            
+                            
+							<div class="form-group col-md-8">
+                                <label for="label" class="col-form-label">Label</label> <input type="text" th:field="*{label}" class="form-control" id="label" placeholder="label"/> <span th:if="${#fields.hasErrors('label')}" th:errors="*{label}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-8">
+                                <label for="price" class="col-form-label">Price</label> <input type="text" th:field="*{price}" class="form-control" id="price" placeholder="Price"/> <span th:if="${#fields.hasErrors('price')}" th:errors="*{price}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-8">
+                            <label for="price" class="col-form-label">Picture</label>
+                            <input class="form-control" type="file" name="files" multiple>
+      					 	</div>
+                            
+                            
+                            <div class="form-group col-md-8">
+                             <label for="provider" class="col-form-label">Providers</label>
+                            <select name="providerId" class="form-control">
+							    <option  th:each="pr: ${providers}" th:value="${pr.id}" th:text="${pr.name}" />
+							</select>
+							</div>
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-primary" value="Add Article"/>
+                            </div>
+
+                            <div class="form-group col-md-8"></div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Add Demande</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+
+<body>
+    <div class="container my-5">
+        <h3> Add Demande Consultation</h3>
+        <div class="card">
+            <div class="card-body">
+                <div class="col-md-10">
+                    <form action="#" th:action="@{/demandeConsultation/add}" th:object="${demandeConsultation}" method="post">
+                        <div class="row">
+                           <!--  <div class="form-group col-md-8">
+                                <label for="numero demande" class="col-form-label">Numero demande</label> <input type="text" th:field="*{}" class="form-control" id="numDem" placeholder="Numero Demande"> <span th:if="${#fields.hasErrors('numDem')}" th:errors="*{numDem}" class="text-danger"></span>
+                            </div>-->
+                            <div class="form-group col-md-8">
+                               <label for="Date Demande" class="col-form-label">Date Demande</label> <input type="text" th:field="*{DateDem}" class="form-control" id="DateDemande" placeholder="DateDemande"> <span th:if="${#fields.hasErrors('DateDem')}" th:errors="*{DateDem}" class="text-danger"></span>
+                            </div>
+                            
+                            <div class="form-group col-md-8">
+                               <label for="Objet" class="col-form-label">Objet</label> <input type="text" th:field="*{Objet}" class="form-control" id="objet" placeholder="Objet"> <span th:if="${#fields.hasErrors('Objet')}" th:errors="*{Objet}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-8">
+                               <label for="libelle Agence" class="col-form-label">Numero Ordre</label> <input type="text" th:field="*{NumOrdre}" class="form-control" id="numOrdre" placeholder="numOrdre"> <span th:if="${#fields.hasErrors('NumOrdre')}" th:errors="*{NumOrdre}" class="text-danger"></span>
+                            </div>
+                            <div class="form-group col-md-8">
+                               <label for="Date Retour" class="col-form-label">Date Retour </label> <input type="text" th:field="*{DateRetour}" class="form-control" id="dateRetour" placeholder="DateRetour"> <span th:if="${#fields.hasErrors('DateRetour')}" th:errors="*{DateRetour}" class="text-danger"></span>
+                            </div>
+                            
+							
+							<div class="form-group col-md-8">
+                             <label for="structureCentrale" class="col-form-label">structureCentrales</label>
+                            <select name="structureCentraleId" class="form-control">
+							    <option  th:each="st: ${structureCentrales}" th:value="${st.codeStructure}" th:text="${st.libelleStructure}" />
+							</select>
+							</div>
+							<div class="form-group col-md-8">
+                             <label for="agence" class="col-form-label">agences</label>
+                            <select name="agenceId" class="form-control">
+							    <option  th:each="ag: ${agences}" th:value="${ag.codeAgence}" th:text="${ag.libelleAgence}" />
+							</select>
+                                 </div>
+                            <div class="col-md-6">
+                                <input type="submit" class="btn btn-primary" value="Add Demande Consultation">
+                            </div>
+
+                            <div class="form-group col-md-8"></div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+

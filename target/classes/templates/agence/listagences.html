@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>list agences</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    
+    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+</head>
+
+<body>
+<div class="container my-5">
+   <nav class="navbar navbar-expand-sm bg-light navbar-light">
+  <ul class="navbar-nav">
+   <!--  <li class="nav-item active">
+      <a class="nav-link btn " th:href="@{/produits}">Accueil</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link btn " th:href="@{/formUser}">Profil</a>
+    </li>-->
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-success" href="#" id="navbardrop" data-toggle="dropdown">Agence</a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/agence/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/agence/list}">liste des agences</a>
+     
+      
+      </div><li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbardrop" data-toggle="dropdown">Direction Regionales</a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/directionRegionale/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/directionRegionale/list}">liste des directions regionales</a>
+      
+      </div>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-success" href="#" id="navbardrop" data-toggle="dropdown">structure Centrales</a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/structureCentrale/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/structureCentrale/list}">liste des structures centrales</a>
+      
+      </div>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-primary" href="#" id="navbardrop" data-toggle="dropdown">Nomenclatures</a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/nomenclature/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/nomenclature/list}"> liste des nomenclatures</a>
+      
+      </div>
+      <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-danger" href="#" id="navbardrop" data-toggle="dropdown"> suivi Document 1ere age </a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/suiviDoc1ereAge/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/suiviDoc1ereAge/list}">list des documents</a>
+      
+      </div>
+      
+    </li>
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-success" href="#" id="navbardrop" data-toggle="dropdown"> suivi Document 2eme age </a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/suiviDoc2emeAge/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/suiviDoc2emeAge/list}">list des documents</a>
+      
+      </div>
+      
+    </li> 
+    <li class="nav-item dropdown">
+      <a class="nav-link dropdown-toggle btn btn-danger" href="#" id="navbardrop" data-toggle="dropdown"> demande Versement </a>
+      <div class="dropdown-menu">
+      <a class="dropdown-item" th:href="@{/demandeVersement/add}">Ajouter</a>
+      <a class="dropdown-item" th:href="@{/demandeVersement/list}">list des demandes versements</a>
+      
+      </div>
+      
+    </li>
+    
+    
+  </ul>
+  <div class="ml-auto">
+      <div class="btn-group text-right">
+        
+  <button type="button" class="btn btn-info dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <span  sec:authorize="isAuthenticated()"  sec:authentication="name" ></span>
+          <span  sec:authorize="!isAuthenticated()"  th:text="Action" ></span>          
+  </button>
+  <div class="dropdown-menu">
+    <a class="dropdown-item" sec:authorize="!isAuthenticated()" th:href="@{/login}">Login</a>
+    <a class="dropdown-item" sec:authorize="isAuthenticated()" th:href="@{/logout}">Logout</a>  
+  </div>
+</div>
+   </nav>
+   </div>
+
+<h2 align="center">List of Agence</h2>
+    <div class="container my-2">
+        <div class="card">
+            <div class="card-body">
+                <div th:switch="${agences}" class="container my-5">
+                    <p class="my-5">
+                      <a th:href="@{'/agence/add/'}" class="btn btn-primary"><i
+							class="fas fa-user-plus ml-2"> Add Agence</i></a>
+                    </p>
+                    <div class="col-md-10">
+                        <h2 th:case="null">No Agences yet!</h2>
+                        <div th:case="*">
+                            <table class="table table-striped table-responsive-md">
+                                <thead>
+                                    <tr>
+                                        <th>Label</th>
+                                        <th>StructureCentrale</th>
+                                        <!-- <th>Provider</th>-->
+                                        <th>Show</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="agence : ${agences}">
+                                        <!-- <td th:text="${agence.codeAgence}"></td>-->
+                                        <td th:text="${agence.libelleAgence}"></td>
+                                        <td th:text="${agence.structureCentrale.libelleStructure}"></td>
+                                        <td><a th:href="@{/agence/show/{id}(id=${agence.codeAgence})}" class="btn btn-primary"><i class="fas fa-user-show ml-2"></i>Show details</a></td>
+                                        <td><a th:href="@{/agence/edit/{id}(id=${agence.codeAgence})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                        <td><a th:href="@{/agence/delete/{id}(id=${agence.codeAgence})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+
+<!-- <!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Articles</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.1/css/all.css" integrity="sha384-5sAR7xN1Nv6T6+dT2mhtzEpVJvfS3NScPQTrOxhwjIuvcA67KV2R5Jz6kr4abQsz" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="../css/shards.min.css"> -->
+<!-- </head>
+
+<body>
+
+<h2 align="center">List of Articles</h2>
+    <div class="container my-2">
+        <div class="card">
+            <div class="card-body">
+                <div th:switch="${articles}" class="container my-5">
+                    <p class="my-5">
+                      <a th:href="@{'/article/add/'}" class="btn btn-primary"><i
+							class="fas fa-user-plus ml-2"> Add Article</i></a>
+                    </p>
+                    <div class="col-md-10">
+                        <h2 th:case="null">No Articles yet!</h2>
+                        <div th:case="*">
+                            <table class="table table-striped table-responsive-md">
+                                <thead>
+                                    <tr>
+                                        <th>Label</th>
+                                        <th>Price</th>
+                                        <th>Provider</th>
+                                        <th>Edit</th>
+                                        <th>Delete</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr th:each="article : ${articles}">
+                                        <td th:text="${article.label}"></td>
+                                        <td th:text="${article.price}"></td>
+                                        <td th:text="${article.provider.name}"></td>
+                                        <td><a th:href="@{/article/edit/{id}(id=${article.id})}" class="btn btn-primary"><i class="fas fa-user-edit ml-2"></i></a></td>
+                                        <td><a th:href="@{/article/delete/{id}(id=${article.id})}" class="btn btn-primary"><i class="fas fa-user-times ml-2"></i></a></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>-->

@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>AMS-Dashboard</title>
+<link rel="stylesheet" type="text/css" th:href="@{/css/registration.css}" />
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+  	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div th:replace="fragments/header :: header"/>
+
+
+<div class="container">
+
+     <br>
+     <br>
+    <div class="starter-template">
+        <h1>Welcome to our Article Managment System Dashboard</h1>
+        <h2>1. Visit our Providers, You must have ADMIN role <a th:href="@{/provider/list}">Providers</a></h2>
+        <h2>2. Visit our Article, You must have USER or ADMIN roles<a th:href="@{/article/list}">Articles</a></h2>
+        <!--  h2>3. Visit <a th:href="@{/about}">Normal page</a></h2-->
+    </div>
+
+</div>
+<!-- /.container -->
+
+<div th:replace="fragments/footer::footer"/>
+
+</body>
+</html>
